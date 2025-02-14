@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   get "dashboard", to: "pages#dashboard"
+  patch "/update/:user_id/bio", to: "pages#update_user_bio", as: :edit_user_bio
 end

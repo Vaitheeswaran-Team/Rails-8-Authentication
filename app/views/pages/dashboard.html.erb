@@ -1,4 +1,10 @@
 <div class="mt-1.5">
-    <p>Dashboard</p>
+    <p>Dashboard of <%= Current.user.email_address %></p>
+
+    <%= form_with model: Current.user, url: edit_user_bio_path(@user.id), method: :patch do |form| %>
+        <%= form.rich_text_area :bio %>
+        <%= form.submit 'save' %>
+    <% end %>
+
     <%= button_to "Logout", session_path, method: :delete%>
 </div>
