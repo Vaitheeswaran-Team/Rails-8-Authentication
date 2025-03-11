@@ -1,7 +1,1 @@
-First Commit
-Second Commit
-Third
-Fourth
-Fifth
-Sixth
-Seventh
+Commit  - 1
