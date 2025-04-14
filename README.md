@@ -9,3 +9,6 @@ check 6
 
 check 8
 check 9
+
+check 10
+check 20
