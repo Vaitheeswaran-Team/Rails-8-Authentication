@@ -1,8 +1,11 @@
-name: Set placeholder PR title & description
+name: "Set placeholder PR title & description"
 
 on:
   pull_request:
     types: [opened]
+
+permissions:
+  pull-requests: write
 
 jobs:
   set-placeholders:
@@ -12,18 +15,19 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const placeholderTitle = "ON-{JIRA_NUMBER} [https://ontrackfinancial.atlassian.net/browse/ON-{JIRA_NUMBER}] {JIRA_TITLE}";
+            const placeholderTitle =
+              'ON-{JIRA_NUMBER} [https://ontrackfinancial.atlassian.net/browse/ON-{JIRA_NUMBER}] {JIRA_TITLE}';
 
-            const placeholderBody = `
-**Jira Ticket:** [https://ontrackfinancial.atlassian.net/browse/ON-{JIRA_NUMBER}]
-
-**Description:**
-{DESCRIPTION}
-
-**Testing Steps (if any):**
-1. {STEP_1}
-2. {STEP_2}
-`;
+            const placeholderBody = [
+              '**Jira Ticket:** [https://ontrackfinancial.atlassian.net/browse/ON-{JIRA_NUMBER}]',
+              '',
+              '**Description:**',
+              '{DESCRIPTION}',
+              '',
+              '**Testing Steps (if any):**',
+              '1. {STEP_1}',
+              '2. {STEP_2}'
+            ].join('\n');
 
             await github.rest.pulls.update({
               owner: context.repo.owner,
